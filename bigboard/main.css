@@ -1,0 +1,35 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    color: #ffffff;
+    background-color: #000000;
+    overflow: hidden;
+}
+
+#content {
+    padding: 4px;
+    margin: 0px;
+}
+
+img {
+    vertical-align: inherit;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    border-bottom: 2px solid #aaa;
+    padding: 0px;
+    margin-bottom: 5px;
+    font-size: 30pt;
+    overflow: hidden;
+    height: 50px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.visitors {
+    width: 80px;
+    text-align: right;
+    display: inline-block;
+}
