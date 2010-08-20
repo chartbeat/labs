@@ -331,7 +331,7 @@ demo.widget.Toppages.prototype.getJsAction_ = function(event) {
 /**
  * Called when new data is received from the backend.
  *
- * @param {Object} data Data received from server
+ * @param {Array.<Object>} data Data received from server
  *
  * @private
  */
@@ -352,6 +352,9 @@ demo.widget.Toppages.prototype.onData_ = function(data) {
       continue;
     }
 
+    /**
+     * @type {demo.widget.Page}
+     */
     var el = this.pages_[page["path"]];
     if (!el) {
       el = new demo.widget.Page(this.host_, page["path"], page["i"], page["visitors"],  ypos);
