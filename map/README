@@ -1,0 +1,23 @@
+The main application consists of these three files:
+* index.html
+* main-compiled.js
+* main.css
+
+To test the uncompiled version of the site, you can use these:
+* index_test.html
+* main.js
+
+These depend on you having the Google Closure Library in this
+directory, under 'closure-library'. You can use 'getclosure.sh' to
+download that (and the Google Closure Compiler) for you. For a more
+elaborate introduction and tutorial, check out:
+http://code.google.com/closure/library/docs/gettingstarted.html
+
+To compile the code yourself, use 'compile.sh'. This will compile
+'main.js' into 'main-compiled.js'.
+
+For more information about chartbeat Labs go to
+http://chartbeat.com/labs.
+
+Enjoy :)
+
