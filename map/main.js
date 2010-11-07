@@ -227,7 +227,7 @@ labs.widget.Map.prototype.onData_ = function(data) {
 
   var removeDelay = this.updateInterval_ * 3;
   var delta = Math.floor(this.updateInterval_ / this.numPages_);
-  var delay = delta;
+  var delay = 0;
   for (var i = data.length - 1; i >= 0 ; --i) {
     var entry = data[i];
     if (entry['utc'] <= this.lastSeen_) {
