@@ -88,7 +88,7 @@ labs.widget.Map.prototype.initMap_ = function() {
   };
 
   /**
-   * @type {Object}
+   * @type {google.maps.Map}
    * @private
    */
   this.map_ = new google.maps.Map(this.element_, options);
