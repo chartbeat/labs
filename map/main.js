@@ -15,6 +15,7 @@ goog.require('goog.net.Jsonp');
 goog.require('goog.style');
 goog.require('goog.Timer');
 goog.require('goog.Uri');
+goog.require('goog.uri.utils');
 
 
 /**
@@ -27,10 +28,11 @@ goog.require('goog.Uri');
  * @param {string|Element} element Element to render the widget in.
  * @param {string} host Hostname to show data for.
  * @param {string} apiKey API key to use.
+ * @param {boolean} streetView Enable streetview?
  * 
  * @constructor
  */
-labs.widget.Map = function(element, host, apiKey) {
+labs.widget.Map = function(element, host, apiKey, streetView) {
   /**
    * @type {Element}
    * @private
@@ -48,7 +50,7 @@ labs.widget.Map = function(element, host, apiKey) {
    * @type {boolean}
    * @private
    */
-  this.streetView_ = false;
+  this.streetView_ = streetView;
 
   /**
    * @type {string}
@@ -292,12 +294,20 @@ labs.widget.Map.prototype.onData_ = function(data) {
  * @param {string} apiKey API key to use.
  */
 function init(element, host, apiKey) {
+  var streetView = false;
   var params = goog.global.location && goog.global.location.search;
-  if (params && goog.string.startsWith(params, '?host=')) {
-    host = params.substring(6);
+  if (params) {
+    var val = goog.uri.utils.getParamValue(params, 'host');
+    if (val) {
+      host = val;
+    }
+    val = goog.uri.utils.getParamValue(params, 'streetview');
+    if (val && val == "1") {
+      streetView = true;
+    }
   }
 
-  var widget = new labs.widget.Map(element, host, apiKey);
+  var widget = new labs.widget.Map(element, host, apiKey, streetView);
   widget.start();
 }
 
