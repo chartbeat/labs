@@ -12,6 +12,7 @@ goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('goog.events.Event');
 goog.require('goog.net.Jsonp');
+goog.require('goog.style');
 goog.require('goog.Timer');
 goog.require('goog.Uri');
 
@@ -43,6 +44,13 @@ labs.widget.Map = function(element, host, apiKey) {
   this.host_ = host;
 
   /**
+   * Show street view too
+   * @type {boolean}
+   * @private
+   */
+  this.streetView_ = false;
+
+  /**
    * @type {string}
    * @private
    */
@@ -70,6 +78,11 @@ labs.widget.Map = function(element, host, apiKey) {
    */
   this.numPages_ = 10;
 
+  if (this.streetView_) {
+    this.updateInterval_ = 60000;
+    this.numPages_ = 4;
+  }
+
   this.initMap_();
 };
 
@@ -92,6 +105,33 @@ labs.widget.Map.prototype.initMap_ = function() {
    * @private
    */
   this.map_ = new google.maps.Map(this.element_, options);
+
+  if (!this.streetView_) {
+    return;
+  }
+
+  // Add StreetView
+  var panoramaOptions = {
+    pov: {
+      heading: 34,
+      pitch: 1,
+      zoom: 1
+    }
+  };
+
+  var panoNode = document.getElementById("pano");
+  goog.style.showElement(panoNode, true);
+  goog.style.setHeight(panoNode, "50%");
+  goog.style.setHeight(this.element_, "50%");
+
+
+  /**
+   * @type {google.maps.StreetViewPanorama}
+   * @private
+   */
+  this.panorama_ = new google.maps.StreetViewPanorama(panoNode,
+                                                      panoramaOptions);
+  this.map_.setStreetView(this.panorama_);
 };
 
 
@@ -199,8 +239,12 @@ labs.widget.Map.prototype.showMarker_ = function(entry, delay, infoRemoveDelay, 
                                                 content: content.join('')
                                               });
   goog.Timer.callOnce(function() {
+                        console.log("marker: " + pos);
                         marker.setMap(this.map_);
                         infoWindow.open(this.map_, marker);
+                        if (this.streetView_) {
+                          this.panorama_.setPosition(pos);
+                        }
                       }, delay, this);
   goog.Timer.callOnce(function() {
                         infoWindow.close();

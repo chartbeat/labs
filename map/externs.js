@@ -9,8 +9,25 @@ google.maps.MVCObject = function() {};
 
 /**
  * @constructor
+ * @param {Element} element
+ * @param {Object} config
+ */
+google.maps.StreetViewPanorama = function(element, config) {};
+
+/**
+ * @param {google.maps.MVCObject} pos
+ */
+google.maps.StreetViewPanorama.prototype.setPosition = function(pos) {};
+
+/**
+ * @constructor
  */
 google.maps.Map = function(a, b) {};
+
+/**
+ * @param {google.maps.StreetViewPanorama} panorama
+ */
+google.maps.Map.prototype.setStreetView = function(panorama) {};
 
 /**
  * @constructor
