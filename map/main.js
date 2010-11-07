@@ -305,6 +305,10 @@ function init(element, host, apiKey) {
     if (val && val == "1") {
       streetView = true;
     }
+    val = goog.uri.utils.getParamValue(params, 'apikey');
+    if (val) {
+      apiKey = val;
+    }
   }
 
   var widget = new labs.widget.Map(element, host, apiKey, streetView);
