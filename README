@@ -1,8 +1,7 @@
-Welcome to the chartbeat Labs code repository.
-
-We will store all our public Labs experiments here, so everybody can
-learn and use the code.
+We've split the old projects out into separate repos:
+* [Bigboard](https://github.com/chartbeat/bigboard)
+* [Maps](https://github.com/chartbeat/map)
+* [jChartbeat](https://github.com/chartbeat/jChartbeat)
 
 For more information about chartbeat Labs, please visit
 http://chartbeat.com/labs
-
